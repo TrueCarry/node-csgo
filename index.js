@@ -88,10 +88,17 @@ CSGOClient.prototype.launch = function() {
   if (this.debug) {
     util.log("Launching CS:GO");
   }
-  this._user.gamesPlayed({
-    games_played: [{
-      game_id: '730'
-    }]
+    this._user.gamesPlayed({
+    games_played: [
+      {
+        game_id: 730,
+        game_flags: 1
+      },
+      {
+        game_id: 570,
+        game_flags: 1
+      }
+    ]
   });
 
   // Keep knocking on the GCs door until it accepts us.
