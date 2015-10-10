@@ -150,11 +150,12 @@ CSGO.CSGOClient.prototype.requestRecentGames = function(accid, callback) {
       },
       payload.toBuffer(), callback)
 };
-CSGO.CSGOClient.prototype.richPresenceRequest = function(steamids, callback){
+CSGO.CSGOClient.prototype.richPresenceRequest = function(steamids, appid, callback){
+  appid = appid ? appid : 730;  
   this._gc._client.send({
         msg: CSGO.EMsg.ClientRichPresenceRequest,
         proto: {
-          routing_appid: 730
+          routing_appid: appid
         }
       },
       new protos.schema.CMsgClientRichPresenceRequest({
@@ -162,6 +163,7 @@ CSGO.CSGOClient.prototype.richPresenceRequest = function(steamids, callback){
       }).toBuffer(), callback);
 };
 CSGO.CSGOClient.prototype.richPresenceUpload = function(rp, steamids, callback){
+  appid = appid ? appid : 730;  
   var payload = new protos.schema.CMsgClientRichPresenceUpload();
   payload.rich_presence_kv = require("../VDF").encode(rp);
   console.log(payload.rich_presence_kv);
